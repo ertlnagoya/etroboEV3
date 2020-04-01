@@ -18,7 +18,7 @@ class Clock
 public:
     /**
      * コンストラクタ
-     * 開始時間をシステムクロックで初期化する
+     * 開始時間をシステム時刻で初期化する
      * @param -
      * @return -
      */
@@ -26,7 +26,7 @@ public:
 
     /**
      * リセット
-     * 開始時間を現在のシステムクロックでリセットする
+     * 開始時間を現在のシステム時刻でリセットする
      * @param -
      * @return -
      */
@@ -36,40 +36,40 @@ public:
      * 経過時間取得
      * 開始時間からの経過時間を取得する
      * @param -
-     * @return 経過時間[msec]
+     * @return 経過時間[usec]
      */
-    uint32_t now(void) const;
+    uint64_t now(void) const;
 
     /**
      * 自タスク遅延
-     * @param duration 遅延時間[msec]
+     * @param duration 遅延時間[usec]
      * @return -
      */
-    inline void wait(uint32_t duration)
+    inline void wait(uint64_t duration)
     {
         dly_tsk(duration);
     }
 
     /**
      * 自タスクスリープ
-     * @param duration スリープ時間[msec]
+     * @param duration スリープ時間[usec]
      * @return -
      */
-    inline void sleep(uint32_t duration)
+    inline void sleep(uint64_t duration)
     {
         tslp_tsk(duration);
     }
 
 protected:
     /**
-     * システムクロック取得
+     * システム時刻取得
      * @param -
-     * @return システムクロック現在値
+     * @return 現在のシステム時刻[usec]
      */
-    static uint32_t getTim();
+    static uint64_t getTim();
 
 private:
-    uint32_t mStartClock;
+    uint64_t mStartClock;
 }; // class Clock
 }  // namespace ev3api
 
