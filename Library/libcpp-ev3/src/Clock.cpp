@@ -34,5 +34,5 @@ uint32_t Clock::getTim()
     get_tim(&time);
     // We're using a 32-bitter and can assume that we
     // don't need to do any locking here.
-    return static_cast<uint32_t>(time);
+    return static_cast<uint32_t>(time / 1000);
 }

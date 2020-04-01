@@ -18,7 +18,7 @@ class Clock
 public:
     /**
      * コンストラクタ
-     * 開始時間をシステムクロックで初期化する
+     * 開始時間をシステム時刻で初期化する
      * @param -
      * @return -
      */
@@ -26,7 +26,7 @@ public:
 
     /**
      * リセット
-     * 開始時間を現在のシステムクロックでリセットする
+     * 開始時間を現在のシステム時刻でリセットする
      * @param -
      * @return -
      */
@@ -47,7 +47,7 @@ public:
      */
     inline void wait(uint32_t duration)
     {
-        dly_tsk(duration);
+        dly_tsk(duration * 1000);
     }
 
     /**
@@ -57,14 +57,14 @@ public:
      */
     inline void sleep(uint32_t duration)
     {
-        tslp_tsk(duration);
+        tslp_tsk(duration * 1000);
     }
 
 protected:
     /**
-     * システムクロック取得
+     * システム時刻取得
      * @param -
-     * @return システムクロック現在値
+     * @return 現在のシステム時刻[msec]
      */
     static uint32_t getTim();
 
